@@ -23,12 +23,17 @@ Use the VSCode extensions to edit files in the container.
 
 ## Setup
 
-### Dockerfile
+### start dev container
 
-Set forked repository path.
+Open this project in VSCode to create a container.
 
-```
-ARG REPO="https://github.com/xxx/deno.git"
+### git clone
+
+For developer, clone forked repository path.
+
+```bash
+$ cd /workspace/
+$ git clone --recurse-submodules https://github.com/denoland/deno.git ./deno
 ```
 
 ## Build
@@ -48,16 +53,32 @@ $ ./target/debug/deno --version
 $ ./target/debug/deno run tests/testdata/run/002_hello.ts
 ```
 
-## [WIP]Remarks
+Can set "deno" path.
 
-以下メモ
+```bash
+$ vim ~/.bashrc
+# Insert 
+> export PATH="/workspace/deno/target/debug:$PATH"
+$ source ~/.bashrc
+$ deno --version
+```
 
-検証中の内容を含む
+## Extension
 
-ローカルマシーンでgitに有効な認証を持っていれば、VSCodeからコミットすることが可能です。
+If the `denoland.vscode-deno` extension is disabled, please enable it.
 
-> Commit from VSCode as long as you have a valid authentication to git on your local machine.
+## Use ssh in container
 
-bind-mountだとdenoをビルドできないが、named-mountだとビルド可能である
+ssh-agent allows local credentials to be used in containers.
 
-> With bind-mount, deno cannot be built, but with named-mount, it can be built.
+> https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials
+
+If ssn-agent is able to transfer to the container, but the key is not available via SSH.
+If you have a low version of OpenSSH on Windows, the specification cannot be used for security purposes.
+
+```bash
+$ ssh -V
+> OpenSSH_for_Windows_9.5p1, LibreSSL 3.8.2
+```
+
+> https://zenn.dev/took/articles/a9c258967f336c

@@ -7,13 +7,7 @@ FROM rust:1.77.2-slim
 WORKDIR /workspace
 
 RUN apt update
-
-# For developer, set forked repository path.
-# default: https://github.com/denoland/deno.git
-ARG REPO="https://github.com/denoland/deno.git"
-
-RUN apt install -y git
-RUN git clone --recurse-submodules $REPO ./deno
+RUN apt install -y git vim
 
 # Native Compilers and Linkers
 # requested at run "./llvm.sh 16"

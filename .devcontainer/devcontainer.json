@@ -12,7 +12,7 @@
       "settings": {
         "rust-analyzer.cargo.features": ["__runtime_js_sources"]
       },
-      "extensions": ["rust-lang.rust-analyzer"]
+      "extensions": ["rust-lang.rust-analyzer", "denoland.vscode-deno"]
     }
   }
 }
